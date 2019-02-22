@@ -23,7 +23,7 @@ var customMapFormat = {
 				var row = '';
 				for (x = 0; x < layer.width; ++x) {
 					var tile = tileset.tile(layer.cellAt(x, y).tileId);
-					row += tile.type || tile.property('name') || ' ';
+					row += tile ? tile.type || tile.property('name') || ' ' : ' ';
 				}
 				asciiMap += '\nD:#' + row + '#';
 			}
