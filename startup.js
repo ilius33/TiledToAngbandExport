@@ -15,21 +15,36 @@ var customMapFormat = {
 		}
 
 		var layer = map.layerAt(0);
-		var horysintalBorder = 'D:' + new Array(layer.width + 3).join('#');
-		var asciiMap = horysintalBorder;
+		var horizontalBorder = 'D:' + new Array(layer.width + 3).join('#');
+		var asciiMap = '';
+		var dictionary = { '-1': ' ' };
 
 		if (layer.isTileLayer) {
+			asciiMap = horizontalBorder;
 			for (y = 0; y < layer.height; ++y) {
 				var row = '';
 				for (x = 0; x < layer.width; ++x) {
-					var tile = tileset.tile(layer.cellAt(x, y).tileId);
-					row += tile ? tile.type || tile.property('name') || ' ' : ' ';
+					var tile, character;
+					var tileId = layer.cellAt(x, y).tileId;
+
+					if (!!dictionary[tileId]) {
+						character = dictionary[tileId];
+					} else {
+						tile = tileId != -1 ? tileset.tile(tileId) : null;
+						character = tile ? tile.type || tile.property('name') || ' ' : ' ';
+						dictionary[tileId] = character;
+					}
+
+					row += character;
 				}
 				asciiMap += '\nD:#' + row + '#';
 			}
+			asciiMap += '\n' + horizontalBorder;
 		}
-        return asciiMap + '\n' + horysintalBorder;
+
+		tiled.log('Done!');
+        return asciiMap;
     },
 }
 
-tiled.registerMapFormat('Andgband.online', customMapFormat)
+tiled.registerMapFormat('Andgband.online', customMapFormat);
