@@ -5,5 +5,4 @@ Read the manual to know where you should place the script: https://doc.mapeditor
 
 Important: 
 - You should use the latest development snapshot rather than stable version of Tiled (on the moment it is written stable was 1.2.2 and the workig version with API support is 2019.02.10)
-- The tileset should be open in the program so the script could read the additional tile fields
-- Script tries to find ASCII symbol in type field, than in custom 'name' field then just uses ' ' (space)
+- Script takes ASCII symbol from custom 'map' field for map section of the export, and from 'mask' field for the mask section. Returns empty space if both fields are empty.
