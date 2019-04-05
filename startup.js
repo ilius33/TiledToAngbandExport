@@ -4,7 +4,7 @@ var customMapFormat = {
 
     toString: function(map, fileName) {
 		var layer = map.layerAt(0);
-		var asciiMap = '';
+		var asciiMap = 'feat:grass:tree:0\n\n';
 		var asciiMask = '';
 
 		var horizontalBorder = function (prefix) { return prefix + ':' + new Array(layer.width + 3).join('#'); };
@@ -12,7 +12,7 @@ var customMapFormat = {
 		var maskDictionary = { '-1': ' ' };
 
 		if (layer.isTileLayer) {
-			asciiMap = horizontalBorder('map');
+			asciiMap += horizontalBorder('map');
 			asciiMask = horizontalBorder('mask');
 
 			for (y = 0; y < layer.height; ++y) {
