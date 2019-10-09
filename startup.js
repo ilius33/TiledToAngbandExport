@@ -1,8 +1,8 @@
 var customMapFormat = {
-    name: 'Andgband.online ASCII',
+    name: 'Angband.online ASCII',
     extension: 'txt',
 
-    toString: function(map, fileName) {
+    write: function(map, fileName) {
 		var layer = map.layerAt(0);
 		var asciiMap = 'feat:grass:tree:0\n\n';
 		var asciiMask = '';
@@ -52,4 +52,4 @@ var customMapFormat = {
     },
 };
 
-tiled.registerMapFormat('Andgband.online', customMapFormat);
+tiled.registerMapFormat('Angband.online', customMapFormat);
