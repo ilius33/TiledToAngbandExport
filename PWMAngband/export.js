@@ -1,8 +1,8 @@
 var customMapFormat = {
-    name: 'Angband.online ASCII',
-    extension: 'txt',
+	name: 'Angband.online ASCII',
+	extension: 'txt',
 
-    write: function(map, fileName) {
+	write: function(map, fileName) {
 		var layer = map.layerAt(0);
 		var asciiMap = 'feat:grass:tree:0\n\n';
 		var asciiMask = '';
@@ -48,8 +48,10 @@ var customMapFormat = {
 
 		tiled.log('Done!');
 
-        return asciiMap;
-    },
+		var file = new TextFile(fileName, TextFile.WriteOnly);
+		file.write(asciiMap);
+		file.commit();
+	},
 };
 
 tiled.registerMapFormat('Angband.online', customMapFormat);
